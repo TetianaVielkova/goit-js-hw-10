@@ -23,27 +23,26 @@ function onSearch(e) {
         return;
     }
     
-    fetchCountries(value)
-    .then(countries => {
+    fetchCountries(value).then(countries => {
         if(countries.length > 10) {
             return Notiflix.Notify.info('Too many matches found. Please enter a more specific name.'); 
         } else if(countries.length === 1){
             showInfoСountry(countries);
             return;
         } else {
-            showInfoCountryList();
+            showInfoCountryList(countries);
             return;
         }
     })
     .catch(error => {
-        Notiflix.Notify.failure('Oops, there is no country with that name');
+        return Notiflix.Notify.failure('Oops, there is no country with that name');
     })
     console.log(fetchCountries(value))
 }
 
 function showInfoСountry(country){
     const cardMarkup = country.map(({flags, name, capital, population, languages}) => `
-    <p><img src = '${flags.svg}' alt = '${name.official}'  width = 50px height = 50px>${name.official}</p>
+    <p><img src = '${flags.svg}' alt = '${name.official}'  width = '50' height = '50'>${name.official}</p>
     <ul class="country-list" style="list-style:none">
         <li class="country-list__item">Capital: ${capital}</li>
         <li class="country-list__item">Population: ${population}</li>
@@ -54,10 +53,11 @@ countryInfo.innerHTML = cardMarkup;
 }
 
 function showInfoCountryList(countries){
-    const listMarkup = countries.map(({ flags, name }) =>  `<li class="country-list__item">
-    <img src='${flags.svg}' alt= '${name.official}' width ='50' height ='50'>
-    <p>${name.official}</p>
+    const listMarkup = countries.map(({ flags, name }) =>  `<li class="country-list__item>
+    <p><img src='${flags.svg}' alt= '${name.official}' width ='50' height ='50'>${name.official}</p>
     </li>`
 ).join('');
 countryInfo.innerHTML = listMarkup;
 }
+
+countryInfo.style.listStyle = 'none';
