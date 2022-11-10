@@ -42,22 +42,21 @@ function onSearch(e) {
 
 function showInfoСountry(country){
     const cardMarkup = country.map(({flags, name, capital, population, languages}) => `
-    <p><img src = '${flags.svg}' alt = '${name.official}'  width = '50' height = '50'>${name.official}</p>
-    <ul class="country-list" style="list-style:none">
-        <li class="country-list__item">Capital: ${capital}</li>
-        <li class="country-list__item">Population: ${population}</li>
-        <li class="country-list__item">Languages: ${Object.values(languages)}</li>
+    <ul class="country-list">
+        <li><p class = "country__title"><img src = '${flags.svg}' alt = '${name.official}'  width = '50'>${name.official}</p></li>
+        <li class="country-list__item"><span>Capital:&nbsp</span> ${capital}</li>
+        <li class="country-list__item"><span>Population:&nbsp</span> ${population}</li>
+        <li class="country-list__item"><span>Languages:&nbsp</span> ${Object.values(languages)}</li>
     </ul>`
 ).join('');
 countryInfo.innerHTML = cardMarkup;
 }
 
 function showInfoCountryList(countries){
-    const listMarkup = countries.map(({ flags, name }) =>  `<li class="country-list__item>
-    <p><img src='${flags.svg}' alt= '${name.official}' width ='50' height ='50'>${name.official}</p>
+    const listMarkup = countries.map(({ flags, name }) =>  `<li >
+    <p class="country-list--items"><img src='${flags.svg}' alt= '${name.official}' width ='50'>${name.official}</p>
     </li>`
 ).join('');
 countryInfo.innerHTML = listMarkup;
 }
 
-countryInfo.style.listStyle = 'none';
