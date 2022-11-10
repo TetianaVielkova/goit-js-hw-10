@@ -54,7 +54,7 @@ countryInfo.innerHTML = cardMarkup;
 
 function showInfoCountryList(countries){
     const listMarkup = countries.map(({ flags, name }) =>  `<li class="country-list__item>
-    <p><img src='${flags.svg}' alt= '${name.official}' width ='50' height ='50' >${name.official}</p>
+    <p><img src='${flags.svg}' alt= '${name.official}' width ='50' height ='50'>${name.official}</p>
     </li>`
 ).join('');
 countryInfo.innerHTML = listMarkup;
